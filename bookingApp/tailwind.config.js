@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        appBlue: "#003580"
+        appBlue: "#003580",
+        lightBlue: "#0071c2"
       },
     },
   },
