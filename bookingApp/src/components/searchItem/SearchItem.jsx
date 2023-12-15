@@ -11,11 +11,11 @@ const SearchItem = () => {
         <div className="flex flex-col gap-3 flex-[2]">
             <h1 className="text-2xl text-lightBlue">Tower Street Apartments</h1>
             <span className="text-sm">500m from center</span>
-            <span className="text-xs rounded-sm bg-[#008009] text-white p-1 w-max ">Free airport taxi</span>
+            <span className="text-xs rounded-sm bg-appGreen text-white p-1 w-max ">Free airport taxi</span>
             <span className="text-sm font-bold">Studio Apartment with Air conditioning</span>
             <span className="text-sm">Entire studio - 1 bathroom - 21 x 21 full bed</span>
-            <span className="font-bold text-[#008009] text-sm">Free cancellation</span>
-            <span className="text-[#008009] text-sm">
+            <span className="font-bold text-appGreen text-sm">Free cancellation</span>
+            <span className="text-appGreen text-sm">
                 You can cancel later, so lock in this this great price today!
             </span>
         </div>

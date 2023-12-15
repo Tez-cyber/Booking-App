@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         appBlue: "#003580",
-        lightBlue: "#0071c2"
+        lightBlue: "#0071c2",
+        appGreen: "#008009"
       },
     },
   },

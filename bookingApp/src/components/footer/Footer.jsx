@@ -10,7 +10,7 @@ const Footer = () => {
         {name: "Hotels"},
     ]
   return (
-    <div className="w-full max-w-5xl text-xs ">
+    <div className="w-full max-w-5xl text-xs mt-4">
         <div className="w-full flex justify-between mb-12">
             <ul className="">
                 {
@@ -18,7 +18,27 @@ const Footer = () => {
                         <li key={item.name} className="mb-2 text-appBlue cursor-pointer">{item.name}</li>
                     ))
                 }
-               
+            </ul>
+            <ul className="">
+                {
+                    ListItems.map(item => (
+                        <li key={item.name} className="mb-2 text-appBlue cursor-pointer">{item.name}</li>
+                    ))
+                }
+            </ul>
+            <ul className="">
+                {
+                    ListItems.map(item => (
+                        <li key={item.name} className="mb-2 text-appBlue cursor-pointer">{item.name}</li>
+                    ))
+                }
+            </ul>
+            <ul className="">
+                {
+                    ListItems.map(item => (
+                        <li key={item.name} className="mb-2 text-appBlue cursor-pointer">{item.name}</li>
+                    ))
+                }
             </ul>
            
         </div>
