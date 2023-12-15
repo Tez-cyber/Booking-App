@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import img1 from "../assets/img-5.jpg"
 import img2 from "../assets/img-6.jpg"
 import img3 from "../assets/img-7.jpg"
@@ -17,6 +17,7 @@ import Footer from '../components/footer/Footer'
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0)
+  const [open, setOpen] = useState(false)
   const images = [
     {
       id: 1,
@@ -43,13 +44,38 @@ const Hotel = () => {
       src:  img6
     },
   ]
+  const handleOpen = (i) => {
+    setSlideNumber(i);
+    setOpen(true)
+  }
+
+  //-----------Handle slider
+  const handleMove = (direction) => {
+    let newSlideNumber;
+    if(direction === "l") {
+      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1
+    }else {
+      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1
+    }
+    setSlideNumber(newSlideNumber)
+  }
   return (
     <div className="">
       <Navbar />
       <Header type="list" />
-      <div className="flex flex-col items-center mt-5">
-
-        <div className="w-full max-w-5xl flex flex-col gap-2 relative">
+      <div className="flex flex-col items-center">
+        {
+          open && 
+            <div className="sticky top-0 left-0 bg-[#00000099] h-screen z-[999] backdrop-blur-md flex items-center">
+              <FontAwesomeIcon onClick={() => setOpen(false)} icon={faCircleXmark} className='absolute top-5 right-5 text-4xl text-gray-200 cursor-pointer '/>
+              <FontAwesomeIcon icon={faCircleArrowLeft} onClick={() => handleMove("l")} className='m-5 text-5xl text-gray-200 cursor-pointer' />
+              <div className="w-full h-full flex justify-center items-center">
+                <img className='w-[70%]' src={images[slideNumber].src} alt="" />
+              </div>
+              <FontAwesomeIcon icon={faCircleArrowRight} onClick={() => handleMove("r")} className='m-5 text-5xl text-gray-200 cursor-pointer' />
+            </div>
+        }
+        <div className="w-full max-w-5xl flex flex-col gap-2 relative mt-5">
           <button className="absolute right-0 top-2 bg-lightBlue text-white px-3 py-2 font-semibold rounded-md cursor-pointer">Reserve / Book now</button>
           <h1 className="text-2xl font-semibold">Grand Hotel</h1>
           <div className="text-sm flex items-center gap-3">
@@ -64,9 +90,9 @@ const Hotel = () => {
           </span>
           <div className="flex flex-wrap justify-between">
             {
-              images.map((image, index) => (
+              images.map((image, i) => (
                 <div key={image.src} className="w-[33%] mb-2">
-                  <img key={image.src} src={image.src} alt="w-full" />
+                  <img onClick={() => handleOpen(i)} key={image.src} src={image.src} alt="w-full" />
                 </div>
               ))
             }
