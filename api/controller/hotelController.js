@@ -26,6 +26,41 @@ class App {
             res.status(500).json(err)
         }
     }
+    //------------------Delete Hotel information
+    deleteHotel = async (req, res) => {
+
+        try{
+            await Hotel.findByIdAndDelete(
+                req.params.id
+            )
+            res.status(200).json("Hotel has been deleted")
+        }catch(err) {
+            res.status(500).json(err)
+        }
+    }
+    //------------------Get Hotel information
+    getHotel = async (req, res) => {
+
+        try{
+            const findHotel = await Hotel.findById(
+                req.params.id
+            )
+            res.status(200).json(findHotel)
+        }catch(err) {
+            res.status(500).json(err)
+        }
+    }
+    //------------------Get all Hotel information
+    getAllHotel = async (req, res) => {
+
+        try{
+            const allHotels = await Hotel.find()
+            res.status(200).json(allHotels)
+        }catch(err) {
+            res.status(500).json(err)
+        }
+    }
+
 }
 
 const newApp = new App
