@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 
-const HotelSchema = new mongoose.Schema({
-    name: {
+const UserSchema = new mongoose.Schema({
+    username: {
         type: String,
         required: true,
         unique: true
@@ -23,7 +23,6 @@ const HotelSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
- 
 })
 
-export default mongoose.model("Hotel", HotelSchema)
+export default mongoose.model("User", UserSchema)
