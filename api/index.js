@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import morgan from "morgan"
+import cookieParser from "cookie-parser"
 
 const app = express()
 //-------------------------Env
@@ -28,12 +29,14 @@ mongoose.connection.on("connected", () => {
 //---------------------------------------------------Middlewares
 app.use(express.json())
 app.use(morgan("common"))
+app.use(cookieParser())
 
 //-------------------------Routes
 import authRoute from "./routes/auth.js"
 import userRoute from "./routes/users.js"
 import hotelRoute from "./routes/hotels.js"
 import roomRoute from "./routes/rooms.js"
+
 
 app.use("/api/auth", authRoute)
 app.use("/api/hotels", hotelRoute)

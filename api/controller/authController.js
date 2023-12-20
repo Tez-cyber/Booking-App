@@ -1,6 +1,7 @@
 import User from "../model/User.js"
 import bcrypt from "bcryptjs"
 import { createError } from "../utils/error.js"
+import jwt from "jsonwebtoken"
 
 
 class App {
@@ -33,9 +34,16 @@ class App {
             const checkPassword = await bcrypt.compare(req.body.password, user.password)
             if(!checkPassword) return next(createError(400, "Wrong Password"))
 
+            const token = jwt.sign(
+                { id: user._id, isAdmin: user.isAdmin }, 
+                process.env.JWT
+            )
+
             const { isAdmin, password, ...otherDetails } = user._doc
 
-            res.status(200).json({...otherDetails})
+            res.cookie("access_token", token, {
+                httpOnly: true
+            }).status(200).json({...otherDetails})
         }catch(err) {
             next(err)
         }
