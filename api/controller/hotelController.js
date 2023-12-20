@@ -57,7 +57,7 @@ class App {
         // if(failed) return next(createError(500, "You are not authenticated"))
 
         try{
-            const allHotels = await Hotel.findById("ddfsfhhhjj")
+            const allHotels = await Hotel.find()
             res.status(200).json(allHotels)
         }catch(err) {
             next(err)
