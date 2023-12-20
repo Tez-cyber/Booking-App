@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 //-------------------------Env
-dotenv.config({ path: "./config/config.env" })
+dotenv.config()
 //-------------------------linking Database
 mongoose.set('strictQuery', false)
 const connect = async () => {
