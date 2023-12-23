@@ -1,10 +1,13 @@
 import express from "express"
 const router = express.Router()
 import userController from "../controller/userController.js"
-import { verifyToken } from "../utils/verifyToken.js"
+import { verifyToken, verifyUser } from "../utils/verifyToken.js"
 
 router.get("/checkauthentication", verifyToken, (req, res) => {
     res.send("Hello user, you are logged in")
+})
+router.get("/checkuser/:id", verifyUser, (req, res) => {
+    res.send("Hello user, you are logged in and you can delete your account")
 })
 router.put("/:id", userController.updateUser)
 router.delete("/:id", userController.deleteUser)
