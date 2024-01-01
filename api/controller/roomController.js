@@ -5,7 +5,7 @@ import { createError } from "../utils/error.js"
 class App {
     //--------------Creating room
     createRoom = async (req, res, next) => {
-        const hotel = req.params.hotelId
+        const hotelId = req.params.hotelId
         const newRoom = new Room(req.body)
 
         try {
@@ -64,8 +64,8 @@ class App {
     //------------------Get all Room information
     getAllRoom = async (req, res, next) => {
         try{
-            const allHotels = await Hotel.find()
-            res.status(200).json(allHotels)
+            const allRooms = await Room.find()
+            res.status(200).json(allRooms)
         }catch(err) {
             next(err)
         }
