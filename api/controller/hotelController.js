@@ -56,9 +56,23 @@ class App {
         // const failed = true;
         // if(failed) return next(createError(500, "You are not authenticated"))
 
-        try{
+        try{  
             const allHotels = await Hotel.find()
             res.status(200).json(allHotels)
+        }catch(err) {
+            next(err)
+        }
+    }
+    //------------------Count by cities
+    countByCity = async (req, res, next) => {
+        const cities = req.query.cities.split(",")
+
+        try{
+            const list = await Promise.all(cities.map(city => {
+                // return Hotel.find({ city: city }).length // This is going to fetch property
+                return Hotel.countDocuments({ city: city }) // Not fetching property just only count
+            }))
+            res.status(200).json(list)
         }catch(err) {
             next(err)
         }
